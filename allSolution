@@ -1,0 +1,81 @@
+
+2.       Write a function which accepts an array of strings and returns a map of character to count of the character(including spaces and special characters).
+
+Eg: input: [‘hello world’, ‘hello world’]  output: {h: 2, e: 2, l: 6, ‘ ‘: 1, o: 4 …… }
+
+Solution:-
+function countCharFrequency(arr) {
+	var string = arr.toString();	
+    var freq = {};
+    for (var i=0; i<string.length;i++) {
+        var character = string.charAt(i);
+        if (freq[character]) {
+           freq[character]++;
+        } else {
+           freq[character] = 1;
+        }
+    }
+
+    return freq;
+};
+var arr_Str = ['hello world',  'hello world'];
+countCharFrequency(arr_Str);
+
+
+3.       Write a function to return all the keys present in an object at any level.
+
+Eg: input: {  a: 5, b: { c: { d: 10 } }}   output: [a, b, c, d]
+
+Solution:-
+var object = {a: 5, b: { c: { d: 10 } }}
+
+function printKeys(obj, arr) {
+  Object.keys(obj).forEach(function(key) {
+    arr.push(key);
+    arr = printKeys(obj[key], arr);
+  });
+  return arr;
+}
+
+printKeys(object, []);
+
+
+4.       Write a function to reverse every word of a string.
+
+·         Using split and reverse
+Solution:-
+function strReverseWithSplit(str) {
+    return str.split("").reverse().join("");
+}
+strReverseWithSplit("hello world");
+
+
+
+·         Without using split and reverse and in O(1) space (since strings are immutable, assume that the input is a character array).
+Solution:-
+function strReverse(str) {
+  if (str === "")
+    return "";
+  else
+    return strReverse(str.substr(1)) + str.charAt(0);
+}
+strReverse("hello world");
+5.       Write a function to remove duplicate strings from an array of strings.
+Solution:-
+var arrstr = ["abc","def","abc","abc"];
+var uniArr = [];
+$.each(arrstr, function(i, el){
+    if($.inArray(el, uniArr) === -1) uniArr.push(el);
+});
+console.log(uniArr);
+
+
+1.Difference between ‘this’ and ‘let’ and when to use what, explain with examples.
+Ans:-let variables are scoped to the immediate enclosing block denoted by { }
+ {
+    let x = "abc";
+    console.log(x);
+  }
+  console.log(x); 
+  
+  this keyword refers to the object it belongs to. It has different values depending on where it is used: ... In a function, this refers to the global object. 
